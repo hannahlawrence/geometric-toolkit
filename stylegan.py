@@ -67,7 +67,7 @@ def load_generator():
 	return g_ema, args, mean_latent
 
 def model_decode(model, latent, truncation, mean_latent, is_z=True):
-  return model([latent], truncation=truncation, truncation_latent=mean_latent, input_is_latent=~is_z)[0]
+  return model([latent], truncation=truncation, truncation_latent=mean_latent, input_is_latent=not is_z)[0]
 
 def get_graddir(g_ema, z0,z1, truncation, mean_latent):
   x1 = model_decode(g_ema, z1, truncation, mean_latent).detach()
